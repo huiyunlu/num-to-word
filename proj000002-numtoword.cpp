@@ -15,7 +15,7 @@ void printWord (char w[][20], int d){
     }
     cout << " ";
 }
-/* ****************************************************************************** */
+
 int main (){
     char ones [20][20] = {"", "one", "two", "three", "four",
                           "five", "six", "seven", "eight", "nine",
@@ -25,12 +25,13 @@ int main (){
          tens [10][20] = {"", "", "twenty", "thirty", "forty",
                           "fifty", "sixty", "seventy", "eighty", "ninety"},
 
-         thou [10][20] = {"", "thousand", "million", "billion", "trillion",
-                          "gg15", "gg18", "gg21", "gg24", "gg30"};
+         thou [10][20] = {"", "thousand", "million,", "billion,", "trillion,",
+                          "quadrillion,", "quintillion,", "sextillion,", "gg24,", "gg30,"};
 
     int digits[21] = {0};
-    int number, i, n, j, x;
-
+    long int number, n;
+    int i, j;
+/* ****************************************************************************** */
     cout << "Enter a number : ";
     cin >> number;
 
@@ -45,14 +46,17 @@ int main (){
             cout << "hundred ";
         }
 
-        if (digits[i+1] > 1) {
-            printWord (tens, digits[i+1]);
-        }
+        if (digits[i+1] > 0 || digits[i] > 0) {
+            cout << "and ";
 
-        if (1) {
-            j = (digits[i+1] == 1 || digits[i+1] == 0) ? digits[i+1] : 0;
+            if (digits[i+1] > 1) {
+                printWord (tens, digits[i+1]);
+                j=0;
+                }
+            else j=1;
+
             printWord (ones, j * 10 + digits[i]);
-        }
+            }
 
         printWord (thou, i/3);
 
